@@ -1,7 +1,8 @@
 .DS_Store
 data
-notebooks
-**whiteboard**
-**__pycache**
-**credentials**
-**.egg-info
+build
+**notebooks**
+**__pycache__**
+**.egg-info**
+!notebooks/sample_notebook.ipynb
+!**.gitkeep

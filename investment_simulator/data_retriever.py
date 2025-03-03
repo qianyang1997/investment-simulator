@@ -1,12 +1,13 @@
+import os
 import json
 import requests
-from investment_simulator.config import CREDS, DATA_DIR
+from investment_simulator import DATA_DIR
 
 
 class DataRetriever:
 
     def __init__(self):
-        self.api_key = CREDS["API_KEY"]
+        self.api_key = os.getenv("ALPHA_VANTAGE_API_KEY")
 
     def _get_url(self, **kwargs):
         query = []

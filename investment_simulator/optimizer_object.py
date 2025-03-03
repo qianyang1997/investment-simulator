@@ -11,11 +11,7 @@ Public methods:
 
 import cvxpy as cp
 import numpy as np
-from typing import Union, Optional, Dict, List
-from investment_simulator.config import set_logger
-
-
-logger = set_logger("OPTIMIZER")
+from typing import Union, Dict, List
 
 
 class Metric:

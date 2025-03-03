@@ -1,5 +1,5 @@
 import cvxpy as cp
-from typing import Optional, List, Dict, Tuple
+from typing import List
 from investment_simulator.optimizer_object import (
     Constraint,
     Metric,

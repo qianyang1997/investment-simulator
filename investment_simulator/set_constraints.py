@@ -1,4 +1,3 @@
-import cvxpy as cp
 from investment_simulator import get_ts_metrics as ts
 from investment_simulator import get_agg_metrics as agg
 from investment_simulator.optimizer_object import Constraint, Optimizer

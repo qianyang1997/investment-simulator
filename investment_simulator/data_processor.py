@@ -3,11 +3,8 @@ import json
 import pandas as pd
 from typing import List
 
-from investment_simulator.config import DATA_DIR, set_logger
+from investment_simulator import DATA_DIR
 from investment_simulator.data_retriever import DataRetriever
-
-
-logger = set_logger("DATA PROCESSOR")
 
 
 class DataProcessor:
@@ -76,5 +73,5 @@ class DataProcessor:
             self.data = self.data[self.data.index <= self.max_date]
         self.data = self.data.sort_index().astype(float)
         print(
-            f"Historical data range: {self.data.iloc[0].name} - {self.data.iloc[-1].name}"
-        )  # TODO
+            f"Historical data range: {self.data.iloc[0].name} - {self.data.iloc[-1].name}\n"
+        )

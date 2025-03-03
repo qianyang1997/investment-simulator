@@ -1,5 +1,4 @@
 import cvxpy as cp
-import pandas as pd
 from investment_simulator.optimizer_object import Metric, Optimizer
 from investment_simulator import utils
 
@@ -61,51 +60,3 @@ def get_covariance_matrix(data, tickers) -> Metric:
     )
     Optimizer.update_metrics(metric)
     return metric
-
-
-## GHOST
-
-
-class TimeSeriesMetrics:
-
-    def delta_return(
-        self, price_data: pd.DataFrame, weights: cp.Variable, freq="D"
-    ) -> cp.Expression:
-        data = price_data.copy()
-        data.index = pd.to_datetime(data.index)
-        if freq != "D":
-            data = data.resample(freq).mean()
-        returns = self._get_percent_change_in_metric(data)
-        return returns @ weights
-
-    def time_series_portfolio_inflation_adjusted_return(
-        self, price_data: pd.DataFrame, cpi_data: pd.DataFrame
-    ) -> pd.DataFrame:
-        nominal_return = self.time_series_portfolio_nominal_return(price_data)
-        inflation_rate = self.inflation_rate(cpi_data)
-        inflation_adjusted_return = (1 + nominal_return) / (1 - inflation_rate) - 1
-        return inflation_adjusted_return
-
-    def input_portfolio_price(
-        self, price_data: pd.DataFrame, weights: cp.Variable
-    ) -> cp.Expression:
-        initial_value = self._get_initial_array(price_data)
-        return initial_value @ weights
-
-    def output_portfolio_price(
-        self, price_data: pd.DataFrame, weights: cp.Variable
-    ) -> cp.Expression:
-        final_value = self._get_final_array(price_data)
-        return final_value @ weights
-
-    def time_series_portfolio_price(
-        self, price_data: pd.DataFrame, weights: cp.Variable
-    ) -> cp.Expression:
-        return price_data @ weights
-
-    def inflation_adjusted_return(
-        self, price_data: pd.DataFrame, cpi_data, weights: cp.Variable
-    ) -> cp.Expression:
-        return (1 + self.nominal_return(price_data, weights)) / (
-            1 + self.inflation_rate(cpi_data)
-        ) - 1

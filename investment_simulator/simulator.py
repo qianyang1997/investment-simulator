@@ -3,7 +3,7 @@ from datetime import datetime
 import json
 import pandas as pd
 from typing import List
-from investment_simulator.config import DATA_DIR
+from investment_simulator import DATA_DIR
 from investment_simulator.data_processor import DataProcessor
 from investment_simulator.optimizer_object import Optimizer
 from investment_simulator.set_variables import set_weights
